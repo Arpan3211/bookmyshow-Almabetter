@@ -7,7 +7,7 @@ This is a backend capston project given by almabetter in this project we created
 
 ## Deployment Links
 
-click on the line to see the project 
+click on the link to see the project 
 
 Frontend on netlify.com
  - https://bms-arpan.netlify.app
@@ -51,7 +51,7 @@ Click on this link for using the website
  1) First select movie you like 
  2) select time schedule 
  3) select seats
- 4) click on Book show button the confirmation pop window will open close this and see right side on the screen the previous movie ticket will show 
+ 4) click on Book show button the confirmation popup window will open ,  close this the window and see right side on the screen the previous movie ticket will show 
  
 
 
@@ -70,11 +70,11 @@ This is a MERN stack project
 
 To run this project, you will need to add the following environment variables to your .env file
 
-Note : your mongodb clustur connect key 
+Note : your mongodb cluster connecting key 
 
 `API_KEY`
 
- MONGOURI : mongodb+srv://user_name:<password>@cluster0.adfedxd.mongodb.net/<batabase_name>?retryWrites=true&w=majority
+ MONGOURI : mongodb+srv://user_name:< password >@cluster0.adfedxd.mongodb.net/< batabase_name >?retryWrites=true&w=majority
 
 
 
@@ -82,11 +82,12 @@ Note : your mongodb clustur connect key
 
 For support, **email** 
 - arpanwaddewar80@gmail.com 
+
 or connect on **linkedin**
 - Arpan Waddewar .
 
 www.linkedin.com/in/Arpan-waddewar
-## project created with 
+## contribution
 
 - [@kaushal kishor]( https://github.com/kaushal2608)
 
