@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import BsContext from "./Context";
- 
+ //This code defines a React component called BsState which uses the useState hook to manage the state of the application
 
 
 const BsState = (props) => {
-  // State variables for managing the application state
+/*It defines several state variables that are used to store various pieces of data that are important to the application. These variables include errorPopup, errorMessage, time, movie, noOfSeat, and lastBookingDetails */
+
+ //errorPopup is a boolean value that is used to determine whether or not an error message should be displayed to the user. errorMessage is a string that contains the message that should be displayed to the user in the event of an error.
   const [errorPopup, setErrorPopup] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  //time and movie are strings that store the selected movie and time slot, respectively. 
   const [time, changeTime] = useState("");
   const [movie, changeMovie] = useState("");
+
+  //noOfSeat is an object that stores the number of seats that have been selected for each seat type (A1, A2, A3, A4, D1, D2).
   const [noOfSeat, changeNoOfSeats] = useState({
     A1: "",
     A2: "",
@@ -17,14 +24,19 @@ const BsState = (props) => {
     D1: "",
     D2: "",
   });
+
+  //lastBookingDetails is an object that stores the details of the last booking that was made.
   const [lastBookingDetails, setLastBookingDetails] = useState(null);
 
-  
+
+  // this is a backend api (deployment api ) 
+  const url = "https://ruby-rhinoceros-cap.cyclic.app"
+
 
   // Function to make a post request to the server with the booking details
   const handlePostBooking = async () => {
-    // Sending api request to backend with user selected movie, slot and seats to book movie.
-    const response = await fetch(`https://ruby-rhinoceros-cap.cyclic.app/api/booking`, {
+ //handlePostBooking is used to send a post request to the server with the selected movie, slot, and seats to book a movie. 
+    const response = await fetch(`${url}/api/booking`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +70,9 @@ const BsState = (props) => {
 
   // Function to make a get request to the server to get the last booking details
   const handleGetLastBooking = async () => {
-    const response = await fetch(`https://ruby-rhinoceros-cap.cyclic.app/api/booking`, {
+    //handleGetLastBooking, which are used to make API requests to the backend.
+    // 
+    const response = await fetch(`${url}/api/booking`, {
       method: "GET",
     });
 
@@ -67,7 +81,7 @@ const BsState = (props) => {
     setLastBookingDetails(data.data);
   };
 
-  //getting movies, slot and seats from localstorage and updating state (useful when page refreshes)
+// the component uses the useEffect hook to get the selected movie, slot, and seats from local storage and update the state accordingly. It also calls the handleGetLastBooking function to get the details of the last booking that was made.
   useEffect(() => {
     const movie = window.localStorage.getItem("movie");
     const slot = window.localStorage.getItem("slot");
@@ -82,7 +96,7 @@ const BsState = (props) => {
   }, []);
 
   return (
-    // providing all the required data to app
+    //The component then uses the BsContext.Provider component to provide all the required data to the child components of the application. The values passed as the value prop to the Provider component are the state variables and functions defined earlier in the component. These values can be accessed by child components using the useContext hook.
     <BsContext.Provider
       value={{
         handlePostBooking,

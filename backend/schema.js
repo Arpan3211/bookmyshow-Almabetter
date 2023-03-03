@@ -1,9 +1,15 @@
+/*the code defines a Mongoose schema for booking  that includes fields for the movie name, time slot, and seat numbers and their corresponding counts. The schema is exported as a Mongoose model with the name "bookmovietickets".*/
+
+
+// Importing Mongoose library
 const mongoose = require("mongoose");
+ // Destructuring Schema object from Mongoose
 const { Schema } = mongoose;
 
 // create a new schema for booking a movie
 const bookMovieSchema = new Schema({
-  movie: { type: String }, // the name of the movie being booked
+  // Creating a field for the name of the movie and time slot being booked with a data type of String
+  movie: { type: String }, 
   slot: { type: String }, // the time slot for the movie
   seats: {
     // an object containing the seat numbers and their corresponding count

@@ -1,10 +1,16 @@
-import LastBookingDetails from "../components/LastBookingDetails";
-import SelectMovie from "../components/MovieSelection";
-import SelectSeats from "../components/SelectSeats";
-import TimeShedule from "../components/MovieTiming";
-import Modal from "../components/ErrorModal";
-import "./Home.css";
-import BsContext from "../context/Context";
+/*The Home component in this code imports several other components and uses the useContext hook to retrieve data from the Context . It also defines several helper functions for validation and booking handling. Finally, it renders the UI elements imported below and returns the component. When the user clicks the "Book Now" button, the handleBookNow function is called, which performs validation checks and either displays an error message or handles the booking process. */
+
+
+// importing the  UI components from the  UI folder 
+import LastBookingDetails from "../UI/LastBookingDetails";
+import SelectMovie from "../UI/MovieSelection";
+import SelectSeats from "../UI/SelectSeats";
+import TimeShedule from "../UI/MovieTiming";
+import Modal from "../UI/ErrorModal";
+// importing the home.css 
+import "../styles/Home.css";
+//importing context 
+import BsContext from "../../context/Context";
 import { useContext } from "react";
 
 const Home = (props) => {
@@ -18,7 +24,7 @@ const Home = (props) => {
     setErrorPopup,
     setErrorMessage,
     changeNoOfSeats,
-  } = context;
+  } = context;  // get properties from context
 
   // function to check if any seat count is negative
   const checkNegativeSeatsValidity = (seats) => {
@@ -30,8 +36,9 @@ const Home = (props) => {
 
     return false;
   };
+ /* The component contains several helper functions, including checkNegativeSeatsValidity and checkZeroSeatsValidity, which check if the number of seats entered by the user is valid. If any seat count is negative or all seat counts are zero, an error message is displayed using the setErrorPopup and setErrorMessage functions from the context. */
 
-  // function to check if all seat counts are zero
+  // function to check if all seat counts are zero   
   const checkZeroSeatsValidity = (seats) => {
     for (let seat in seats) {
       if (Number(seats[seat]) > 0) {
@@ -67,6 +74,11 @@ const Home = (props) => {
       changeNoOfSeats({}); // reset seats after booking
     }
   };
+
+
+
+/*  The component also renders the Modal component, which displays error messages, and the SelectMovie, LastBookingDetails, TimeShedule, and SelectSeats components, which are used to select a movie, display the user's last booking details, select a time slot, and select the number of seats, respectively. */
+
 
   return (
     <>

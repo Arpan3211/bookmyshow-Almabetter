@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./seatsSetup.css";
+import React, { useState ,useEffect } from "react";
+import "../styles/seatsSetup.css";
 
 const SeatsInput = ({
   changeNoOfSeats,
@@ -10,8 +10,12 @@ const SeatsInput = ({
   index,
 }) => {
   // Use state to manage the input value
-  const [inputValue, setInputValue] = useState(noOfSeat?.[text] || "");
+  const [inputValue, setInputValue] = useState( "");
 
+  useEffect(() => {
+    // Update the input value whenever noOfSeat[text] changes
+    setInputValue(noOfSeat?.[text] || "");
+  }, [noOfSeat?.[text]]);
   // Function to handle the change in seat input and update the state and local storage
   const change_seats = (e) => {
     const newValue = e.target.value;

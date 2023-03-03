@@ -1,14 +1,18 @@
+
+//The component imports useEffect and useContext hooks from the React library, as well as a context object called BsContext from a custom context file. 
 import React, { useEffect } from "react";
-import "./lastbookingdetails.css";
+import "../styles/lastbookingdetails.css";
 import { useContext } from "react";
-import BsContext from "../context/Context";
-import { seats } from "../data";
+import BsContext from "../../context/Context";
+import { seats } from "../../data";
 
 const LastBookingDetails = (props) => {
   const context = useContext(BsContext);
 
   const { handleGetLastBooking, lastBookingDetails } = context;
 
+
+  //the useEffect hook is used to fetch the last booking details by calling the handleGetLastBooking function when the component mounts or handleGetLastBooking changes.
   useEffect(() => {
     // Fetch last booking details
     handleGetLastBooking();
@@ -16,6 +20,9 @@ const LastBookingDetails = (props) => {
 
   return (
     <div className="last_booking_details_container_main">
+
+      {/* If lastBookingDetails exists, the component maps through the seats array and displays each seat value using the lastBookingDetails object. It also displays the time slot and movie name for the last booking. */}
+
       <h2 className="last_booking_details_header">Last Booking Details:</h2>
       {lastBookingDetails ? (
         // If last booking details are available, show them
@@ -43,7 +50,7 @@ const LastBookingDetails = (props) => {
           </p>
         </>
       ) : (
-        // If lastBookingDetails doesn't exist, display a message
+        // If lastBookingDetails does not exist, the component displays a message saying "No Previous Booking Found!"
         <p className="no_previous_booking_msg">No Previous Booking Found!</p>
       )}
     </div>
