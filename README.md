@@ -19,7 +19,7 @@ Backend on cyclic.sh
  ## API Documentation
 
 #### Base URL
-https://pear-alligator-wear.cyclic.app/api
+https://bookmytickets.cyclic.app/api
 
 #### Booking
 get  the booking
