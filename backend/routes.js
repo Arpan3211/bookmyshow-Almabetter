@@ -56,8 +56,8 @@ router.post("/booking", async (req, res) => {
 
 // Route to get the most recent booking data
 router.get("/booking", async (req, res) => {
-  const myData = await Schema.find().sort({ _id: -1 })
-  res.send(myData) // Finding the most recent booking data from the database
+  const myData = await Schema.find().sort({ _id: -1 }).limit(1)
+  // Finding the most recent booking data from the database
 
   if (myData.length === 0) {
     // If no booking data is found, send a response with a null data and a message
