@@ -13,8 +13,9 @@ const TimeShedule = () => {
   const { time, changeTime } = context;
 
 
-  // The handleChangeTime function is defined to update the time value in the context and also store it in the local storage
+  // This code defines a function called handleChangeTime, which takes a value parameter. When this function is called, it invokes the changeTime function with the value parameter and saves the value in the local storage
   const handleChangeTime = useCallback((value) => {
+    //The useCallback hook is used to memoize this function so that it is only created once and not recreated on every re-render of the component.
     changeTime(value);
     window.localStorage.setItem("slot", value);
   }, [changeTime]);

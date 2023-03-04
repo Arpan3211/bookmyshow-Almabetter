@@ -15,10 +15,11 @@ const SelectMovie = () => {
     // Get the selected movie from local storage
     const selectedMovie = window.localStorage.getItem("movie");
 
-    // If there is a selected movie in local storage, update the context
+    // The useEffect function takes a callback function that is executed when the component mounts and any time movie or changeMovie change.
     if (selectedMovie && selectedMovie !== movie) {
       changeMovie(selectedMovie);
     }
+    // If a selected movie is found in local storage and it is different than the current movie state, it updates the context with the selected movie using the changeMovie function.
   }, [changeMovie, movie]);
 
 
