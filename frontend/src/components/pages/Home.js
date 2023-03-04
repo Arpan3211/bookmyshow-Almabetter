@@ -11,7 +11,7 @@ import Modal from "../UI/ErrorModal";
 import "../styles/Home.css";
 //importing context 
 import BsContext from "../../context/Context";
-import { useContext } from "react";
+import { useContext ,useMemo } from "react";
 
 const Home = (props) => {
   // Get the required data from context using useContext hook
@@ -27,52 +27,51 @@ const Home = (props) => {
   } = context;  // get properties from context
 
   // function to check if any seat count is negative
-  const checkNegativeSeatsValidity = (seats) => {
-    for (let seat in seats) {
-      if (Number(seats[seat]) < 0) {
-        return true;
+  const checkNegativeSeatsValidity = useMemo(() => {
+    return (seats) => {
+      for (let seat in seats) {
+        if (Number(seats[seat]) < 0) {
+          return true;
+        }
       }
-    }
-
-    return false;
-  };
+      return false;
+    };
+  }, []);
  /* The component contains several helper functions, including checkNegativeSeatsValidity and checkZeroSeatsValidity, which check if the number of seats entered by the user is valid. If any seat count is negative or all seat counts are zero, an error message is displayed using the setErrorPopup and setErrorMessage functions from the context. */
 
   // function to check if all seat counts are zero   
-  const checkZeroSeatsValidity = (seats) => {
-    for (let seat in seats) {
-      if (Number(seats[seat]) > 0) {
-        return false;
+  const checkZeroSeatsValidity = useMemo(() => {
+    return (seats) => {
+      for (let seat in seats) {
+        if (Number(seats[seat]) > 0) {
+          return false;
+        }
       }
-    }
-    return true;
-  };
+      return true;
+    };
+  }, []);
 
   // function to handle the booking process
   const handleBookNow = () => {
     // check if a movie is selected
-    if (!movie) {
-      setErrorPopup(true);
-      setErrorMessage("Please select a movie!");
+    switch (true) {
+      case !movie:
+        setErrorPopup(true);
+        setErrorMessage("Please select a movie!");
+        break;
+      case !time:
+        setErrorPopup(true);
+        setErrorMessage("Please select a time slot!");
+        break;
+      case checkNegativeSeatsValidity(noOfSeat) || checkZeroSeatsValidity(noOfSeat):
+        setErrorPopup(true);
+        setErrorMessage("Invalid Seats!");
+        break;
+      default:
+        handlePostBooking();
+        changeNoOfSeats({}); // reset seats after booking
     }
-    // check if a time slot is selected
-    else if (!time) {
-      setErrorPopup(true);
-      setErrorMessage("Please select a time slot!");
-    }
-    // check if any seat count is negative or all seat counts are zero
-    else if (
-      checkNegativeSeatsValidity(noOfSeat) ||
-      checkZeroSeatsValidity(noOfSeat)
-    ) {
-      setErrorPopup(true);
-      setErrorMessage("Invalid Seats!");
-    }
-    // all validations passed, proceed with booking
-    else {
-      handlePostBooking();
-      changeNoOfSeats({}); // reset seats after booking
-    }
+    
   };
 
 

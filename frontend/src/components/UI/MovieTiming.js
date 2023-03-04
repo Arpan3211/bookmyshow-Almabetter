@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext , useCallback } from "react";
 import RadioComponent from "./RadioComponent";
 import { slots } from "../../data"; // importing data slots
 import "../styles/movieTiming.css";
@@ -14,11 +14,10 @@ const TimeShedule = () => {
 
 
   // The handleChangeTime function is defined to update the time value in the context and also store it in the local storage
-  const handleChangeTime = (value) => {
-    // function to update the selected time and storeing  in the local storage
+  const handleChangeTime = useCallback((value) => {
     changeTime(value);
     window.localStorage.setItem("slot", value);
-  };
+  }, [changeTime]);
 
   return (
     <>

@@ -1,6 +1,6 @@
 
 // The component imports useContext hook from the React library, a custom RadioComponent component, and an array called moviesList from a data file. It also imports a stylesheet called movieSelection.css.
-import React, { useContext } from "react";
+import React, { useContext , useEffect } from "react";
 import RadioComponent from "./RadioComponent";
 import { moviesList } from "../../data";
 import BsContext from "../../context/Context";
@@ -10,6 +10,17 @@ const SelectMovie = () => {
   const context = useContext(BsContext);
 //the useContext hook is used to access the movie and changeMovie values from the context object.
   const { movie, changeMovie } = context;
+
+  useEffect(() => {
+    // Get the selected movie from local storage
+    const selectedMovie = window.localStorage.getItem("movie");
+
+    // If there is a selected movie in local storage, update the context
+    if (selectedMovie && selectedMovie !== movie) {
+      changeMovie(selectedMovie);
+    }
+  }, [changeMovie, movie]);
+
 
   // handleChangeMovie that takes a value as input. This function updates the movie value in the context by calling the changeMovie function and also stores the selected movie in local storage.
   const handleChangeMovie = (value) => {
